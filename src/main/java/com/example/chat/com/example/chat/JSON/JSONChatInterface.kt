@@ -9,12 +9,14 @@ interface JSONChatInterface {
     @GET("messages")
     fun getPosts(): Call<List<Post>>
 
+    @FormUrlEncoded
     @POST("message")
-    fun postPost() : Boolean
+    fun postPost(@Field("content")content : String,
+                 @Field("login") login : String) : Call<Post>
 
     @PUT("message/{id}")
-    fun putPost(@Path("id") id : Int) : Boolean
+    fun putPost(@Path("id") id : Int) : Call<Post>
 
     @DELETE("message/{id}")
-    fun deletePost(@Path("id") id : Int) : Boolean
+    fun deletePost(@Path("id") id : String) : Call<Post>
 }
